@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:wdth,wght@96.4,753&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+    <div class="app">
+        <header>
+            <a href="#" class="logo">APEX</a>
+            <ul class="navi">
+                <li><a href="#shop">SHOP</a></li>
+                <li><a href="#deals">DEALS</a></li>
+                <li><a href="#contact">ABOUT/CONTACT</a></li>
+            </ul>
+            <ul class="navii">
+                <li>
+                    <a href="#user">
+                    <div class="user-icon-wrapper"> 
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    </a>
+
+                    <div id="cart-icon-container" class="cart-icon-wrapper" onclick="toggleMiniCart(event)">
+                        <i class="fa-solid fa-bag-shopping"></i> 
+                        <span id="cart-count">0</span>
+
+                        <div id="mini-cart" class="mini-cart-dropdown" onclick="event.stopPropagation()">
+                            <div class="mini-cart-header">
+                                <h3>YOUR CART</h3>
+                                <span class="close-mini-cart" onclick="toggleMiniCart(event)">&times;</span>
+                            </div>
+        
+                            <div id="mini-cart-items" class="mini-cart-items-container">
+                                <p class="empty-cart-msg">Your cart is empty.</p>
+                            </div>
+        
+                            <div class="mini-cart-footer">
+                                <div class="cart-total-box">
+                                    <span>Total:</span>
+                                    <span id="cart-total-price">$0</span>
+                                </div>
+                                <button class="confirm-order-btn" onclick="confirmOrder()">CONFIRM ORDER</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </header>
+        <div class="hero">
+            <div class="hero-image">
+                <img src="Nike5.png" alt="Nike Shoe" class="transparent-shoe">
+            </div>
+            <div class="hero-text">
+                <h1>CATCH OUR EXCLUSIVE DEALS!</h1>
+                <p>Premium Nike footwear is just a click away. Don't miss out.</p>
+                <a href="#shop" class="btn">Shop Now</a>
+            </div>
+        </div>
+
+        <div id="imageModal" class="modal">
+            <span class="close-btn">&times;</span>
+            <img class="modal-content" id="zoomedImage">
+        </div>
+
+        <div class="shop" id="shop">
+            <div id="head">
+                <p id="red">Performance Footwear</p>
+                <h1>Elite Series</h1>
+                <p id="black">Engineered for speed, designed for the streets. Explore our latest drop of high-performance footwear.</p>
+                <hr>
+            </div>
+
+            <div class="shop-controls">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search for your favorite sneaker..." oninput="filterAndSortShoes()">
+                </div>
+    
+            <div class="sort-box">
+                <i class="fa-solid fa-arrow-down-short-wide sort-icon"></i>
+                <select id="sortSelect" onchange="filterAndSortShoes()">
+                    <option value="default">Sort By</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name-asc">Alphabetical: A-Z</option>
+                </select>
+            </div>
+            </div>
+
+            <div id="products-container">
+            </div>
+            <hr>
+        </div>
+
+        <div class="deals" id="deals">
+            <div class="deals-head">
+                <h4>EXCLUSIVE OFFERS</h4>
+                <h1>EXCLUSIVE SALE EVENT</h1>
+                <p>Limited-edition releases and high-performance court designs on limited seasonal rates.</p>
+            </div>
+            <div class="deals-pic">
+                <img src="whiteNike.png" alt="White Nike">
+            </div>
+        </div>
+
+
+        <section class="offers-container">
+    
+            <div class="offer-row white-bg">
+            <div class="offer-text">
+                <span class="badge red-badge">LIMITED RELEASE</span>
+                <h1 class="main-title">THE CLASSIC CORE</h1>
+                <h2 class="discount-title">40% OFF</h2>
+                <p class="description">
+                    The foundation of every performance rotation. Breathable mesh panels meet premium leather overlays for all-day comfort and structural integrity.
+                </p>
+                <button class="offer-btn" onclick="addToCart('THE CLASSIC CORE', 120)">GET DEAL</button>
+            
+                <div class="watermark-text">OFF</div>
+            </div>
+            <div class="offer-image">
+                <img src="whiteNike.png" alt="White Classic Nike" onclick="openZoom(this.src)" style="cursor: zoom-in;">
+            </div>
+            </div>
+
+
+
+            <div class="offer-row dark-bg reverse-row">
+            <div class="offer-text">
+                <span class="badge red-badge">HIGH PERFORMANCE</span>
+                <h1 class="main-title">ELITE TRACTION</h1>
+                <h2 class="discount-title">BUY 1 GET 1</h2>
+                <p class="description">
+                    Engineered for the court, optimized for the street. Our most responsive cushioning technology yet, now available at our best seasonal rate.
+                </p>
+                <button class="offer-btn" onclick="addToCart('ELITE TRACTION', 150)">GET DEAL  </button>
+            
+                <div class="watermark-text">TECH</div>
+            </div>
+            <div class="offer-image">
+                <img src="Nike5.png" alt="Black Elite Nike" onclick="openZoom(this.src)" style="cursor: zoom-in;">
+            </div>
+            </div>
+            </div>
+
+        </section>
+
+
+        <section class="end-section" id="contact">
+    
+            <div class="contact-side">
+                <div class="contact-info">
+                    <h1>CONTACT US</h1>
+                    <p>Have questions or need assistance? Reach out to our support team for prompt help.</p>   
+                </div>
+
+            <div class="contact-cards">
+            <div class="card call">
+                <i class="fa-solid fa-phone"></i>
+                <h2>Call Us</h2>
+                <p>+2010203040</p>
+            </div>
+            <div class="card email">
+                <i class="fa-solid fa-envelope"></i>
+                <h2>Email Us</h2>
+                <p>support@apex.com</p>
+            </div>
+            <div class="card instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <h2>Instagram</h2>
+                <p>@apexshoes</p>
+            </div>
+            <div class="card facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <h2>Facebook</h2>
+                <p>ApexPerformance</p>
+            </div>
+            </div>
+            </div>
+
+            <div class="message-side" id="user">
+            <div class="message-content">
+                <h1>STAY IN THE LOOP</h1>
+                <p>Sign up for our newsletter to receive exclusive offers, product launches, and more.</p>
+                <form class="message-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+            </div>
+
+        </section>
+
+
+        <section class="footer">
+            <div class="footer-content">
+                <h3>APEX PERFORMANCE FOOTWEAR</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <p>&copy; 2026 Apex Performance Footwear. All rights reserved.</p>
+
+            </div>
+        </section>
+
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="main.js"></script>
+
+
+</body>
+</html>
